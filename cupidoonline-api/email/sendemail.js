@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import handler from "../libs/Handler-lib";
-
+//"body": "{\"name\":\"maykon\",\"email\":\"maaykon51@gmail.com\",\"message\":\"oioioioi\"}" test mocking body
+//"body": "{\"email\":\"maaykon51@gmail.com\"}" for test mocks
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {

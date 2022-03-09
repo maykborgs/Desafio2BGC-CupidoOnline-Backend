@@ -21,7 +21,7 @@ provider:
   # commit your .env.
   #
   environment:
-    tableName: cupidoonlinetable
+    tableName: cupidoonline
     bucket: cupidoonlibebucket
     #SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
 
