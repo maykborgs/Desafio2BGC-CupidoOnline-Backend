@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import handler from "../libs/Handler-lib";
-//"body": "{\"name\":\"maykon\",\"email\":\"maaykon51@gmail.com\",\"message\":\"oioioioi\"}" test mocking body
-//"body": "{\"email\":\"maaykon51@gmail.com\"}" for test mocks
+import dynamoDb from '../libs/Dynamodb-lib';
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-export const sendingEmail = handler(async (event, context) => {
+export const sendingcreatingEmail = handler(async (event, context) => {
     const { name, email, message } = JSON.parse(event.body);
 
     await transporter.sendMail({
@@ -25,5 +25,16 @@ export const sendingEmail = handler(async (event, context) => {
         `
     });
 
+    const params = {
+        TableName: process.env.tableName,
+        Item: {
+          // The attributes of the item to be created
+          name,
+          email,
+          message,
+          createdAt: Date.now(),
+        },
+      };
+      await dynamoDb.put(params);
     return { status: true };
 });

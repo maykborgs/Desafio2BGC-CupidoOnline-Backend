@@ -40,18 +40,9 @@ provider:
       Resource: "arn:aws:dynamodb:sa-east-1:*:*"
 
 functions:
-  createEmail:
-    handler: email/create.createMessage
-    description: Create the message into DynamoDB.
-    events:
-      - http:
-          path: send
-          method: post
-          cors: true
-
-  sendEmail:
-    handler: email/sendemail.sendingEmail
-    description: Send the e-mail to the person.
+  sendcreateEmail:
+    handler: email/sendcreateemail.sendingcreatingEmail
+    description: Send the e-mail to the person and create the message in DB.
     events:
       - http:
           path: send
